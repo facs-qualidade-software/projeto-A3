@@ -8,7 +8,7 @@ on:
 
 jobs:
   preflight:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latestÏ
     steps:
       - uses: actions/checkout@v4
       - name: Instalação do JDK for x64
@@ -24,10 +24,22 @@ jobs:
         run: mvn --batch-mode --update-snapshots compile
       - name: Validação da mensagem de commit
         run: |
-          chmod +x commit-msg
-          bash setup.sh
+          echo "Validando mensagens de commit..."
           
-          git config --global --list | grep .git-template
+          # Regex para validar a mensagem do commit
+          REGEX="^((Merge[ a-z-]* branch.*)|(Revert*)|((build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(.*\))?!?: .*))"
+          
+          # Loop para todos os commits desse push ou pull request
+          for COMMIT_HASH in $(git rev-list --no-merges HEAD ^${{ github.event.before }}); do
+              MESSAGE=$(git log --format=%B -n 1 $COMMIT_HASH)
+              echo "Commit Message: ${MESSAGE}"
+              if ! [[ "$MESSAGE" =~ $REGEX ]]; then
+                  echo >&2 "ERROR: Commit aborted for not following the Conventional Commit standard."
+                  exit 1
+              else
+                  echo "Valid commit message."
+              fi
+          done
 
   build:
     runs-on: ubuntu-latest
