@@ -34,7 +34,7 @@ jobs:
                         echo >&2 "ERROR: Commit aborted for not following the Conventional Commit standard."
                         exit 1
                     else
-                        echo "Valid commit message."
+                        echo "Valid commit message!"
                     fi
                 done
             - name: Instalação do JDK for x64
