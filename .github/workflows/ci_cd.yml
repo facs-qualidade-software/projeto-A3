@@ -8,7 +8,7 @@ on:
 
 jobs:
   preflight:
-    runs-on: ubuntu-latestÏ
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Instalação do JDK for x64
