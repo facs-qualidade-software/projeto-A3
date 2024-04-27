@@ -3,7 +3,7 @@ Projeto A3 - Qualidade de Software
 
 DATABASE QUERY (postgreSQL in Supabase):
 
-CREATE DATABASE mercadinho;
+USE DATABASE postgres (SUPABASE somente aceita database padrão postgres na versão gratuita);
 
 CREATE TABLE IF NOT EXISTS clientes (
 id SERIAL PRIMARY KEY,
