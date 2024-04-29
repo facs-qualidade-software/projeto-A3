@@ -10,8 +10,8 @@ jobs:
   preflight:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
       - name: Validação da mensagem de commit
+        uses: actions/checkout@v4
         run: |
           echo "Validando mensagens de commit..."
 
