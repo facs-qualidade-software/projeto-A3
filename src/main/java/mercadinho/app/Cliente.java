@@ -17,6 +17,12 @@ public class Cliente {
 
   }
 
+  public Cliente(String nome, String cpf, Date dataNascimento) {
+    this.nome = nome;
+    this.cpf = cpf;
+    this.dataNascimento = dataNascimento;
+  }
+
   public Cliente(int id, String nome, String cpf, Date dataNascimento) {
     this.id = id;
     this.nome = nome;
