@@ -10,7 +10,7 @@ public class App {
   public static void main(String[] args) throws ParseException {
 
     try (Connection connection = DbConexao.conectar()) {
-      System.out.println("Conectado com sucesso!");
+      System.out.println("Conectado ao Banco de Dados com sucesso!");
     } catch (SQLException e) {
       System.out.println(e.getMessage());
     }
