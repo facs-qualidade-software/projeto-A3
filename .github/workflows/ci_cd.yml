@@ -10,42 +10,42 @@ jobs:
   preflight:
     runs-on: ubuntu-latest
     steps:
-      - name: Validação da mensagem de commit
-        run: |
-          echo "Validando mensagens de commit..."
+        - uses: actions/checkout@v4
+        - name: Validação da mensagem de commit
+          run: |
+            echo "Validando mensagens de commit..."
+#           Regex para validar a mensagem do commit
+            REGEX="^((Merge[ a-z-]* branch.*)|(Revert.*)|((build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(.*\))?!?:.*))"
+            
+#           Se a tag de base não existir, use o primeiro commit do repositório
+            BASE_TAG=your-base-tag  # Substitua com o nome da sua tag de base
+            if git rev-parse $BASE_TAG >/dev/null 2>&1; then
+                COMMIT_RANGE=$BASE_TAG..HEAD
+            else
+                COMMIT_RANGE=$(git rev-list --max-parents=0 HEAD)
+            fi
+            
+#           Loop para validar todas as mensagens de commit no intervalo
+            for COMMIT_HASH in $(git rev-list --no-merges $COMMIT_RANGE); do
+                MESSAGE=$(git log --format=%B -n 1 $COMMIT_HASH)
+                echo "Commit Message: ${MESSAGE}"
+                if ! [[ "$MESSAGE" =~ $REGEX ]]; then
+                    echo >&2 "ERROR: Commit aborted for not following the Conventional Commit standard."
+                    exit 1
+                else
+                    echo "Valid commit message!"
+                fi
+            done
 
-#         Regex para validar a mensagem do commit
-          REGEX="^((Merge[ a-z-]* branch.*)|(Revert.*)|((build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(.*\))?!?:.*))"
-
-#         Se a tag de base não existir, use o primeiro commit do repositório
-          BASE_TAG=your-base-tag  # Substitua com o nome da sua tag de base
-          if git rev-parse $BASE_TAG >/dev/null 2>&1; then
-              COMMIT_RANGE=$BASE_TAG..HEAD
-          else
-              COMMIT_RANGE=$(git rev-list --max-parents=0 HEAD)
-          fi
-          
-#         Loop para validar todas as mensagens de commit no intervalo
-          for COMMIT_HASH in $(git rev-list --no-merges $COMMIT_RANGE); do
-              MESSAGE=$(git log --format=%B -n 1 $COMMIT_HASH)
-              echo "Commit Message: ${MESSAGE}"
-              if ! [[ "$MESSAGE" =~ $REGEX ]]; then
-                  echo >&2 "ERROR: Commit aborted for not following the Conventional Commit standard."
-                  exit 1
-              else
-                  echo "Valid commit message!"
-              fi
-          done
-      - uses: actions/checkout@v4
-      - name: Instalação do JDK para x64
-        uses: actions/setup-java@v4
-        with:
-          java-version: '20'
-          distribution: 'temurin'
-          architecture: x64
-          cache: 'maven'
-          #run: mvn -f my-app/pom.xml
-          #cache-dependency-path: /my-app/pom.xml
+        - name: Instalação do JDK para x64
+          uses: actions/setup-java@v4
+          with:
+            java-version: '20'
+            distribution: 'temurin'
+            architecture: x64
+            cache: 'maven'
+            #run: mvn -f my-app/pom.xml
+            #cache-dependency-path: /my-app/pom.xml
 
   build:
     runs-on: ubuntu-latest
