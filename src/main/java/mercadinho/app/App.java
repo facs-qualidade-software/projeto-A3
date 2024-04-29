@@ -15,13 +15,6 @@ public class App {
       System.out.println(e.getMessage());
     }
 
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    Date data_nascimento = sdf.parse("2003-11-22");
-    Cliente cliente = new Cliente("Mariana Chaves", "12345678909", data_nascimento);
-
-    DbInsercao.inserirCliente(cliente);
-//    DbDelecao.deletar(cliente);
-
   }
 }
 
