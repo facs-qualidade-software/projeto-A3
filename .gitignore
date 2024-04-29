@@ -17,6 +17,11 @@ buildNumber.properties
 .classpath
 
 
+#Variaveis ambiente
+.env
+
+
+
 # O abaixo foi gerado automaticamente pelo IntelliJ. Pode haver repetições.
 
 target/
