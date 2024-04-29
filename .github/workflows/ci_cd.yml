@@ -2,9 +2,9 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [main, dev/*, release]
+    branches: [main, release, dev, dev-*]
   pull_request:
-    branches: [main, dev/*, release]
+    branches: [main, release, dev]
 
 jobs:
     preflight:
