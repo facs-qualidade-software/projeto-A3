@@ -1,13 +1,17 @@
 package mercadinho.app;
 
-/**
- * Hello world!
- *
- */
+import java.sql.SQLException;
+import java.sql.Connection;
+
 public class App {
   public static void main(String[] args) {
 
-    System.err.println("Hello,world!");
+    try (Connection connection = DbConexao.conectar()) {
+      System.out.println("Conectado ao Banco de Dados com sucesso!");
+    } catch (SQLException e) {
+      System.out.println(e.getMessage());
+    }
 
   }
 }
+
