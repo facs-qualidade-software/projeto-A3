@@ -18,4 +18,3 @@ nome VARCHAR(100) NOT NULL,
 cpf VARCHAR(20) NOT NULL UNIQUE,
 data_de_nascimento VARCHAR(10) NOT NULL
 );
-
