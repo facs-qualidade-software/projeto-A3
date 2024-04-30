@@ -27,6 +27,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Rodar testes de integração
+        env:
+          MY_ENV_DBNAME: ${{secrets.MY_ENV_DBNAME}}
+          MY_ENV_DBPORT: ${{secrets.MY_ENV_DBPORT}}
+          MY_ENV_DBURL: ${{secrets.MY_ENV_DBURL}}
+          MY_ENV_HOST: ${{secrets.MY_ENV_HOST}}
+          MY_ENV_PASSWORD: ${{secrets.MY_ENV_PASSWORD}}
+          MY_ENV_USER: ${{secrets.MY_ENV_USER}}
         run: mvn --batch-mode --update-snapshots verify
 
   versioning:
