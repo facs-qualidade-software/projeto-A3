@@ -44,13 +44,15 @@ jobs:
     if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Configuração do Git
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
       - name: Tag release
         run: |
-          GENERATE_VERSION=$1
+          GENERATE_VERSION=true
           echo "Generate version: $GENERATE_VERSION"
 
           PREVENT_REMOVE_FILE=$2
