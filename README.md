@@ -1,6 +1,12 @@
 # projeto-A3
 Projeto A3 - Qualidade de Software
 
+## Documentação
+
+[Link da documentação do projeto](https://github.com/facs-qualidade-software/docs)
+
+## Banco de Dados:
+
 DATABASE QUERY (postgreSQL in Supabase):
 
 USE DATABASE postgres (SUPABASE somente aceita database padrão postgres na versão gratuita);
