@@ -3,10 +3,9 @@ name: CI/CD Pipeline
 on:
 
   push:
-    branches: [dev, dev*, dev-*]
+    branches: [main, release, dev, dev*, dev-*]
   pull_request:
-    branches: [dev, dev*, dev-*]
-  workflow_dispatch:
+    branches: [main, release, dev, dev*, dev-*]
 
 jobs:
     preflight:
@@ -46,8 +45,6 @@ jobs:
             distribution: "temurin"
             architecture: x64
             cache: "maven"
-            #run: mvn -f my-app/pom.xml
-            #cache-dependency-path: /my-app/pom.xml
 
     build:
       runs-on: ubuntu-latest
