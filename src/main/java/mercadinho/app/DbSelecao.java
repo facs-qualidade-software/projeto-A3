@@ -30,18 +30,19 @@ public class DbSelecao {
 
         try (Connection dbconn = DbConexao.conectar()) {
             if (dbconn != null) {
-                PreparedStatement pstmt = dbconn.prepareStatement(query);
-                pstmt.setString(1, parametro);
-                ResultSet rs = pstmt.executeQuery();
-                while (rs.next()) {
-                    listaDeResultados.add(
-                            new Cliente(
-                                    rs.getInt("id"),
-                                    rs.getString("nome"),
-                                    rs.getString("cpf" ),
-                                    sdf.parse(rs.getString("data_de_nascimento"))
-                                        ){
-                    });
+                try(PreparedStatement pstmt = dbconn.prepareStatement(query)) {
+                    pstmt.setString(1, parametro);
+                    ResultSet rs = pstmt.executeQuery();
+                    while (rs.next()) {
+                        listaDeResultados.add(
+                                new Cliente(
+                                        rs.getInt("id"),
+                                        rs.getString("nome"),
+                                        rs.getString("cpf"),
+                                        sdf.parse(rs.getString("data_de_nascimento"))
+                                ) {
+                                });
+                    }
                 }
             }
         } catch (Exception e) {
