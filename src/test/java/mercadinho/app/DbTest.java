@@ -19,7 +19,6 @@ public class DbTest {
     @BeforeEach
     public void setup(){
         clienteReaderDb = new ClienteReaderDb();
-
         controladorEntidades = mock(ControladorEntidades.class);
         clienteReaderDb.setControlador(controladorEntidades);
 

@@ -7,6 +7,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DbAtualizacao {
+
+    private DbAtualizacao(){
+        throw new IllegalStateException("Utility class only");
+    }
+
     public static void atualizarNome(Cliente cliente, String nome) {
         atualizar(cliente.getCpf(), nome, "UPDATE clientes SET nome = ? WHERE cpf = ?");
     }
@@ -21,14 +26,13 @@ public class DbAtualizacao {
     }
 
     private static void atualizar(String cpf, String parametro, String query) {
-        try {
-            Connection dbconn = DbConexao.conectar();
+        try (Connection dbconn = DbConexao.conectar()) {
             if (dbconn != null) {
-                PreparedStatement pstmt = dbconn.prepareStatement(query);
-                pstmt.setString(1, parametro);
-                pstmt.setString(2, cpf);
-                pstmt.executeUpdate();
-                dbconn.close();
+                try(PreparedStatement pstmt = dbconn.prepareStatement(query)) {
+                    pstmt.setString(1, parametro);
+                    pstmt.setString(2, cpf);
+                    pstmt.executeUpdate();
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
