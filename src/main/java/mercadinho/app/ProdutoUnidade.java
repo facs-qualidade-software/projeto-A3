@@ -27,7 +27,7 @@ public class ProdutoUnidade extends Produto {
     if (this.validaProdutoIntNonZero((int) novaUnidade)) {
       this.unidade = (int) novaUnidade;
     } else {
-      out.format("Erro: Unidade não pode ser zero ou negativo");
+      out.println("Erro: Unidade não pode ser zero ou negativo %n");
     }
   }
 
@@ -38,10 +38,9 @@ public class ProdutoUnidade extends Produto {
 
   // Validações
   public boolean validaProdutoIntNonZero(int someInt) {
-    if ((int) someInt > 0) {
+    if ((int) someInt > 0)
       return true;
-    } else {
+    else
       return false;
-    }
   }
 }
