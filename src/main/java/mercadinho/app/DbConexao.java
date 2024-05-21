@@ -8,6 +8,10 @@ import io.github.cdimascio.dotenv.Dotenv;
 
 public class DbConexao {
 
+    private DbConexao(){
+        throw new IllegalStateException("Utility class only");
+    }
+
     public static Connection conectar() throws SQLException {
 
 //        Credenciais para rodar Banco de dados com arquivo .env local:

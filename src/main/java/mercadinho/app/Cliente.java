@@ -2,7 +2,6 @@ package mercadinho.app;
 
 import java.util.Date;
 import java.util.regex.*;
-
 import static java.lang.System.out;
 
 public class Cliente {
@@ -42,10 +41,10 @@ public class Cliente {
       if (this.validaNomeCliente(novoNome)) {
         this.nome = novoNome;
       } else {
-        out.format("Erro: Nome não pode conter dígitos \n");
+        out.println("Erro: Nome não pode conter dígitos %n");
       }
     } else {
-      out.format("Erro: nome não pode ser vazio \n");
+      out.println("Erro: nome não pode ser vazio %n");
     }
 
   }
@@ -55,10 +54,10 @@ public class Cliente {
       if (this.validaCpfCliente(novoCpf)) {
         this.cpf = novoCpf;
       } else {
-        out.format("Erro: CPF incorreto. Informe novamente \n");
+        out.println("Erro: CPF incorreto. Informe novamente %n");
       }
     } else {
-      out.format("Erro: CPF não pode ser vazio \n");
+      out.println("Erro: CPF não pode ser vazio %n");
     }
   }
 
@@ -66,7 +65,7 @@ public class Cliente {
     if (this.validaDataNascimentoCliente(novoDataNascimento)) {
       this.dataNascimento = novoDataNascimento;
     } else {
-      out.format("Erro: Data de nascimento não pode ser futura \n");
+      out.println("Erro: Data de nascimento não pode ser futura %n");
     }
   }
 
@@ -89,11 +88,10 @@ public class Cliente {
 
   // Validações
   public boolean validaIdCliente(int id){
-    if (id > 0) {
+    if (id > 0)
       return true;
-    } else {
-    return false;
-    }
+    else
+      return false;
   }
 
   public boolean validaNomeCliente(String nome) {
@@ -102,11 +100,10 @@ public class Cliente {
     Matcher matcher = pattern.matcher(nome);
     boolean resultado = matcher.find();
 
-    if (resultado) {
+    if (resultado)
       return false;
-    } else {
+    else
       return true;
-    }
   }
 
   public boolean validaCpfCliente(String cpf) {
@@ -148,9 +145,8 @@ public class Cliente {
       resto = 0;
     }
 
-    if (resto != Integer.parseInt(cpf.substring(10, 11))) {
+    if (resto != Integer.parseInt(cpf.substring(10, 11)))
       return false;
-    }
 
     return true;
   }
@@ -159,10 +155,9 @@ public class Cliente {
     Date dataHoje = new Date();
     int resultadoComparacao = dataSubmetida.compareTo(dataHoje);
 
-    if (resultadoComparacao >= 1) {
+    if (resultadoComparacao >= 1)
       return false;
-    } else {
+     else
       return true;
-    }
   }
 }

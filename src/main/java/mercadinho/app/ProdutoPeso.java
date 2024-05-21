@@ -27,7 +27,7 @@ public class ProdutoPeso extends Produto {
     if (this.validaProdutoFloatNonZero(novoPeso)) {
       this.peso = (float) novoPeso;
     } else {
-      out.format("Erro: peso não pode ser zero ou negativo \n");
+      out.println("Erro: peso não pode ser zero ou negativo %n");
     }
   }
 

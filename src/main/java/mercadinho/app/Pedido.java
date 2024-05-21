@@ -2,8 +2,6 @@ package mercadinho.app;
 
 import java.util.ArrayList;
 
-//Classe que contém lista de produtos e faz checkout (finaliza) uma compra;
-
 public class Pedido {
 
   final private ArrayList<Produto> itensPedido = new ArrayList<>();
