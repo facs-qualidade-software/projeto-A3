@@ -7,6 +7,11 @@ import java.util.ArrayList;
 import java.sql.Connection;
 
 public class DbSelecao {
+
+    private DbSelecao(){
+        throw new IllegalStateException("Utility class only");
+    }
+
     public static ArrayList<Cliente> selecionarNome(String nome) {
         return selecionar(nome, "SELECT * FROM clientes WHERE nome = ?");
     }
@@ -23,8 +28,7 @@ public class DbSelecao {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         ArrayList<Cliente> listaDeResultados = new ArrayList<>();
 
-        try {
-            Connection dbconn = DbConexao.conectar();
+        try (Connection dbconn = DbConexao.conectar()) {
             if (dbconn != null) {
                 PreparedStatement pstmt = dbconn.prepareStatement(query);
                 pstmt.setString(1, parametro);
@@ -39,7 +43,6 @@ public class DbSelecao {
                                         ){
                     });
                 }
-                dbconn.close();
             }
         } catch (Exception e) {
             e.printStackTrace();

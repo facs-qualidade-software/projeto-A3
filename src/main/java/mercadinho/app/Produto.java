@@ -12,11 +12,11 @@ public abstract class Produto {
   private Date dataValidade;
 
   // Construtores
-  public Produto() {
+  protected Produto() {
 
   }
 
-  public Produto(String fabricante, String nome, float preco, Date dataValidade) {
+  protected Produto(String fabricante, String nome, float preco, Date dataValidade) {
     this.setFabricante(fabricante);
     this.setNome(nome);
     this.setPreco((float) preco);
@@ -28,7 +28,7 @@ public abstract class Produto {
     if (this.validaStringsProduto(novoFabricante)) {
       this.fabricante = novoFabricante;
     } else {
-      out.format("Erro: nome do fabricante não pode ser vazio \n");
+      out.println("Erro: nome do fabricante não pode ser vazio %n");
     }
   }
 
@@ -36,7 +36,7 @@ public abstract class Produto {
     if (this.validaStringsProduto(novoNome)) {
       this.nome = novoNome;
     } else {
-      out.format("Erro: nome do produto não pode ser vazio \n");
+      out.println("Erro: nome do produto não pode ser vazio %n");
     }
   }
 
@@ -44,7 +44,7 @@ public abstract class Produto {
     if (this.validaProdutoFloatNonZero(novoPreco)) {
       this.preco = (float) novoPreco;
     } else {
-      out.format("Erro: preço não pode ser zero ou negativo \n");
+      out.println("Erro: preço não pode ser zero ou negativo %n");
     }
   }
 
@@ -52,7 +52,7 @@ public abstract class Produto {
     if (this.validaDataValidade(novaDataValidade)) {
       this.dataValidade = novaDataValidade;
     } else {
-      out.format("Erro: Data de validade não pode ser anterior \n");
+      out.println("Erro: Data de validade não pode ser anterior %n");
     }
   }
 
@@ -79,29 +79,27 @@ public abstract class Produto {
 
   // Validações
   public boolean validaStringsProduto(String nome) {
-    if (!nome.trim().isEmpty()) {
+    if (!nome.trim().isEmpty())
       return true;
-    } else {
+    else
       return false;
-    }
   }
 
   public boolean validaProdutoFloatNonZero(float someFloat) {
-    if((float) someFloat <= 0) {
+    if((float) someFloat <= 0)
       return false;
-    } else {
+    else
       return true;
-    }
   }
 
   public boolean validaDataValidade(Date dataSubmetida) {
     Date dataHoje = new Date();
     int resultadoComparacao = dataSubmetida.compareTo(dataHoje);
 
-    if (resultadoComparacao >= 0) {
+    if (resultadoComparacao >= 0)
       return true;
-    } else {
+    else
       return false;
-    }
   }
+
 }
