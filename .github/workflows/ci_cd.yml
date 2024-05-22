@@ -61,13 +61,3 @@ jobs:
         - uses: actions/checkout@v4
         - name: Rodar testes unitários
           run: mvn --batch-mode --update-snapshots test
-        - name: Envio de relatório do Jacoco
-          shell: bash
-          env:
-            FTP_HOST: ${{secrets.FTP_HOST}}
-            FTP_USER: ${{secrets.FTP_USER}}
-            FTP_PW: ${{secrets.FTP_PW}}
-          run: |
-            ls -l ./target/site/jacoco/
-            chmod +x ./.github/ftpupload.sh
-            ./.github/ftpupload.sh "$FTP_HOST" "$FTP_USER" "$FTP_PW"
