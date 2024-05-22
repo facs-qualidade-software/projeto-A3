@@ -28,10 +28,17 @@ jobs:
           FTP_USER: ${{secrets.FTP_USER}}
           FTP_PW: ${{secrets.FTP_PW}}
         run: |
-          DATAHORARIO=$(date '+%F__%H-%M-%S')
-          chmod +x ./.github/ftpupload.sh
-          cd ./target/site/jacoco/
-          ./.github/ftpupload.sh "$FTP_HOST" "$FTP_USER" "$FTP_PW" "$DATAHORARIO"
+          PASTAPROJETO="facs-qualidade-software-projetoA3"
+          NOMEPASTAJACOCO="relatorio_jacoco__$(date '+%F__%H-%M-%S')"
+          chmod +x ${{ github.workspace }}/.github/ftp_upload_jacoco.sh
+          cd ${{ github.workspace }}/target/site/jacoco/
+          ${{ github.workspace }}/.github/ftp_upload_jacoco.sh "$FTP_HOST" "$FTP_USER" "$FTP_PW" "$PASTAPROJETO" "$NOMEPASTAJACOCO"
+          chmod +x ${{ github.workspace }}/.github/ftp_upload_jacoco_resources.sh
+          cd ./jacoco-resources/
+          ${{ github.workspace }}/.github/ftp_upload_jacoco_resources.sh "$FTP_HOST" "$FTP_USER" "$FTP_PW" "$PASTAPROJETO" "$NOMEPASTAJACOCO"
+          chmod +x ${{ github.workspace }}/.github/ftp_upload_jacoco_app.sh
+          cd ./../mercadinho.app/
+          ${{ github.workspace }}/.github/ftp_upload_jacoco_app.sh "$FTP_HOST" "$FTP_USER" "$FTP_PW" "$PASTAPROJETO" "$NOMEPASTAJACOCO"
 
   versioning:
     runs-on: ubuntu-latest
