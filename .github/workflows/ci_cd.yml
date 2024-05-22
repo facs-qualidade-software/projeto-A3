@@ -68,7 +68,14 @@ jobs:
             FTP_USER: ${{secrets.FTP_USER}}
             FTP_PW: ${{secrets.FTP_PW}}
           run: |
-            DATAHORARIO=$(date '+%F__%H-%M-%S')
-            chmod +x ${{ github.workspace }}/.github/ftpupload.sh
-            cd ${{ github.workspace }}/target/site/jacoco/
-            ${{ github.workspace }}/.github/ftpupload.sh "$FTP_HOST" "$FTP_USER" "$FTP_PW" "$DATAHORARIO"
+            NOMEPASTAJACOCO="relatorio_jacoco_parcial__$(date '+%F__%H-%M-%S')"
+            echo $NOMEPASTAJACOCO
+            #chmod +x ${{ github.workspace }}/.github/ftpupload.sh
+            #cd ${{ github.workspace }}/target/site/jacoco/
+            #${{ github.workspace }}/.github/ftpupload.sh "$FTP_HOST" "$FTP_USER" "$FTP_PW" "$NOMEPASTAJACOCO"
+            #chmod +x ${{ github.workspace }}/.github/ftpupload_resources_folder.sh
+            #cd ./jacoco-resources/
+            #${{ github.workspace }}/.github/ftpupload_resources_folder.sh "$FTP_HOST" "$FTP_USER" "$FTP_PW" "$NOMEPASTAJACOCO"
+            #chmod +x ${{ github.workspace }}/.github/ftpupload_app_folder.sh
+            #cd ../mercadinho.app/
+            #${{ github.workspace }}/.github/ftpupload_app_folder.sh "$FTP_HOST" "$FTP_USER" "$FTP_PW" "$NOMEPASTAJACOCO"
