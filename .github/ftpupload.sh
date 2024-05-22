@@ -6,7 +6,7 @@ SENHA=$3
 
 PASTAPROJETO="facs-qualidade-software-projetoA3"
 DATAHORARIO=$(date '+%F__%H-%M-%S')
-NOMEPASTAJACOCO="relatorio_jacoco__parcial__${DATAHORARIO}"
+NOMEPASTAJACOCO="relatorio_jacoco__${DATAHORARIO}"
 ARQUIVOORIGEM="./target/site/jacoco/jacoco.xml"
 ARQUIVODESTINO="jacoco.xml"
 
