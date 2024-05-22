@@ -28,9 +28,10 @@ jobs:
           FTP_USER: ${{secrets.FTP_USER}}
           FTP_PW: ${{secrets.FTP_PW}}
         run: |
-          ls -l ./target/site/jacoco/
+          DATAHORARIO=$(date '+%F__%H-%M-%S')
           chmod +x ./.github/ftpupload.sh
-          ./.github/ftpupload.sh "$FTP_HOST" "$FTP_USER" "$FTP_PW"
+          cd ./target/site/jacoco/
+          ./.github/ftpupload.sh "$FTP_HOST" "$FTP_USER" "$FTP_PW" "$DATAHORARIO"
 
   versioning:
     runs-on: ubuntu-latest
