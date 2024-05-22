@@ -7,9 +7,7 @@ SENHA=$3
 PASTAPROJETO="facs-qualidade-software-projetoA3"
 DATAHORARIO=$(date '+%F__%H-%M-%S')
 NOMEPASTAJACOCO="relatorio_jacoco__parcial__${DATAHORARIO}"
-PASTAPRINCIPAL="./target/site/jacoco/"
-PASTAJACOCORESOURCES="jacoco-resources"
-PASTAMERCADINHOAPP="mercadinho.app"
+ARQUIVOXML="./target/site/jacoco/jacoco.xml"
 
 ftp -inv $HOST <<END_SCRIPT
 user $USUARIO $SENHA
@@ -17,7 +15,7 @@ cd $PASTAPROJETO
 passive
 mkdir $NOMEPASTAJACOCO
 cd $NOMEPASTAJACOCO
-put $PASTAPRINCIPALjacoco.xml
+put $ARQUIVOXML
 ls
 quit
 END_SCRIPT
