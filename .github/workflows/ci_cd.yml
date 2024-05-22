@@ -69,6 +69,6 @@ jobs:
             FTP_PW: ${{secrets.FTP_PW}}
           run: |
             DATAHORARIO=$(date '+%F__%H-%M-%S')
-            chmod +x ./.github/ftpupload.sh
-            cd ./target/site/jacoco/
-            ./.github/ftpupload.sh "$FTP_HOST" "$FTP_USER" "$FTP_PW" "$DATAHORARIO"
+            chmod +x /.github/ftpupload.sh
+            cd /target/site/jacoco/
+            /.github/ftpupload.sh "$FTP_HOST" "$FTP_USER" "$FTP_PW" "$DATAHORARIO"
