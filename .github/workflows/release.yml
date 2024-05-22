@@ -21,6 +21,16 @@ jobs:
           MY_ENV_PASSWORD: ${{secrets.MY_ENV_PASSWORD}}
           MY_ENV_USER: ${{secrets.MY_ENV_USER}}
         run: mvn --batch-mode --update-snapshots verify
+      - name: Envio de relatório do Jacoco
+        shell: bash
+        env:
+          FTP_HOST: ${{secrets.FTP_HOST}}
+          FTP_USER: ${{secrets.FTP_USER}}
+          FTP_PW: ${{secrets.FTP_PW}}
+        run: |
+          ls -l ./target/site/jacoco/
+          chmod +x ./.github/ftpupload.sh
+          ./.github/ftpupload.sh "$FTP_HOST" "$FTP_USER" "$FTP_PW"
 
   versioning:
     runs-on: ubuntu-latest
