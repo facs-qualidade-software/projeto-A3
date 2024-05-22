@@ -69,4 +69,4 @@ jobs:
             FTP_PW: ${{secrets.FTP_PW}}
           run: |
             chmod +x ./.github/ftpupload.sh
-            ./.github/ftpupload.sh "$FTP_HOST" "$FTP_USER" "FTP_PW"
+            ./.github/ftpupload.sh "$FTP_HOST" "$FTP_USER" "$FTP_PW"
