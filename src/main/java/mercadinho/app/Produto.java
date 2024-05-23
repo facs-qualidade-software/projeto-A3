@@ -79,27 +79,18 @@ public abstract class Produto {
 
   // Validações
   public boolean validaStringsProduto(String nome) {
-    if (!nome.trim().isEmpty())
-      return true;
-    else
-      return false;
+    return !nome.trim().isEmpty();
   }
 
   public boolean validaProdutoFloatNonZero(float someFloat) {
-    if((float) someFloat <= 0)
-      return false;
-    else
-      return true;
+    return !((float) someFloat <= 0);
   }
 
   public boolean validaDataValidade(Date dataSubmetida) {
     Date dataHoje = new Date();
     int resultadoComparacao = dataSubmetida.compareTo(dataHoje);
 
-    if (resultadoComparacao >= 0)
-      return true;
-    else
-      return false;
+    return resultadoComparacao >= 0;
   }
 
 }
