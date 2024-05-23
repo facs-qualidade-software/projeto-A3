@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.sql.Connection;
+import java.util.logging.Logger;
 
 public class DbSelecao {
 
@@ -46,7 +47,7 @@ public class DbSelecao {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger("context", String.valueOf(e));
         }
         return listaDeResultados;
     }
