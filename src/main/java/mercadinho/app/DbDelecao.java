@@ -20,7 +20,6 @@ public class DbDelecao {
             }
         } catch (Exception e) {
             Logger.getLogger("context", String.valueOf(e));
-//            e.printStackTrace();
         }
     }
 }

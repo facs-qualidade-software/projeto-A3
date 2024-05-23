@@ -34,7 +34,6 @@ public class DbConexao {
         } catch (SQLException e) {
             System.err.println(e.getMessage());
             Logger.getLogger("context", String.valueOf(e));
-//            e.printStackTrace();
             return null;
         }
     }

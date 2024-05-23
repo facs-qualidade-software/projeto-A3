@@ -48,7 +48,6 @@ public class DbSelecao {
             }
         } catch (Exception e) {
             Logger.getLogger("context", String.valueOf(e));
-//            e.printStackTrace();
         }
         return listaDeResultados;
     }
