@@ -88,10 +88,7 @@ public class Cliente {
 
   // Validações
   public boolean validaIdCliente(int id){
-    if (id > 0)
-      return true;
-    else
-      return false;
+    return id > 0;
   }
 
   public boolean validaNomeCliente(String nome) {
@@ -100,10 +97,7 @@ public class Cliente {
     Matcher matcher = pattern.matcher(nome);
     boolean resultado = matcher.find();
 
-    if (resultado)
-      return false;
-    else
-      return true;
+    return !resultado;
   }
 
   public boolean validaCpfCliente(String cpf) {
@@ -145,19 +139,13 @@ public class Cliente {
       resto = 0;
     }
 
-    if (resto != Integer.parseInt(cpf.substring(10, 11)))
-      return false;
-
-    return true;
+    return resto == Integer.parseInt(cpf.substring(10, 11));
   }
 
   public boolean validaDataNascimentoCliente(Date dataSubmetida) {
     Date dataHoje = new Date();
     int resultadoComparacao = dataSubmetida.compareTo(dataHoje);
 
-    if (resultadoComparacao >= 1)
-      return false;
-     else
-      return true;
+    return resultadoComparacao < 1;
   }
 }

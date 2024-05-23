@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Logger;
 
 public class DbAtualizacao {
 
@@ -35,7 +36,8 @@ public class DbAtualizacao {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger("context", String.valueOf(e));
+//            e.printStackTrace();
         }
     }
 }

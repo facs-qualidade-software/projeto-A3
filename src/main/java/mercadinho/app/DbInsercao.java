@@ -4,12 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.logging.Logger;
 
 public class DbInsercao {
 
     private DbInsercao(){
       throw new IllegalStateException("Utility class only");
-    };
+    }
 
     public static void inserirCliente(Cliente cliente) {
         try (Connection dbconn = DbConexao.conectar()) {
@@ -23,7 +24,8 @@ public class DbInsercao {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger("context", String.valueOf(e));
+//            e.printStackTrace();
         }
     }
 }

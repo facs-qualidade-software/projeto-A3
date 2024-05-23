@@ -3,6 +3,8 @@ package mercadinho.app;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Logger;
+
 import static java.lang.System.getenv;
 import io.github.cdimascio.dotenv.Dotenv;
 
@@ -31,7 +33,8 @@ public class DbConexao {
 
         } catch (SQLException e) {
             System.err.println(e.getMessage());
-            e.printStackTrace();
+            Logger.getLogger("context", String.valueOf(e));
+//            e.printStackTrace();
             return null;
         }
     }
