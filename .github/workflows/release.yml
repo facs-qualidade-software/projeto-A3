@@ -20,7 +20,15 @@ jobs:
           MY_ENV_HOST: ${{secrets.MY_ENV_HOST}}
           MY_ENV_PASSWORD: ${{secrets.MY_ENV_PASSWORD}}
           MY_ENV_USER: ${{secrets.MY_ENV_USER}}
-        run: mvn --batch-mode --update-snapshots verify
+        run: |
+          touch .env
+          echo MY_ENV_HOST=$MY_ENV_HOST >> .env
+          echo MY_ENV_USER=$MY_ENV_USER >> .env
+          echo MY_ENV_PASSWORD=$MY_ENV_PASSWORD >> .env
+          echo MY_ENV_DBURL=$MY_ENV_DBURL >> .env
+          echo MY_ENV_DBNAME=$MY_ENV_DBNAME >> .env
+          echo MY_ENV_DBPORT=$MY_ENV_DBPORT >> .env
+          mvn --batch-mode --update-snapshots verify
       - name: Envio de relatório do Jacoco
         shell: bash
         env:
@@ -30,15 +38,7 @@ jobs:
         run: |
           PASTAPROJETO="facs-qualidade-software-projetoA3"
           NOMEPASTAJACOCO="relatorio_jacoco__$(date '+%F__%H-%M-%S')"
-          chmod +x ${{ github.workspace }}/.github/ftp_upload_jacoco.sh
-          cd ${{ github.workspace }}/target/site/jacoco/
-          ${{ github.workspace }}/.github/ftp_upload_jacoco.sh "$FTP_HOST" "$FTP_USER" "$FTP_PW" "$PASTAPROJETO" "$NOMEPASTAJACOCO"
-          chmod +x ${{ github.workspace }}/.github/ftp_upload_jacoco_resources.sh
-          cd ./jacoco-resources/
-          ${{ github.workspace }}/.github/ftp_upload_jacoco_resources.sh "$FTP_HOST" "$FTP_USER" "$FTP_PW" "$PASTAPROJETO" "$NOMEPASTAJACOCO"
-          chmod +x ${{ github.workspace }}/.github/ftp_upload_jacoco_app.sh
-          cd ./../mercadinho.app/
-          ${{ github.workspace }}/.github/ftp_upload_jacoco_app.sh "$FTP_HOST" "$FTP_USER" "$FTP_PW" "$PASTAPROJETO" "$NOMEPASTAJACOCO"
+          echo https://joaobsjunior.com.br/trabalho-a3/$PASTAPROJETO/$NOMEPASTAJACOCO/
 
   versioning:
     runs-on: ubuntu-latest
