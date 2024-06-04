@@ -23,7 +23,7 @@ public class DbAtualizacao {
 
     public static void atualizarDataDeNascimento(Cliente cliente, Date data_de_nascimento) {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        atualizar(cliente.getCpf(), df.format(data_de_nascimento), "UPDATE clientes SET data_de_nascimento = ? WHERE id = ?");
+        atualizar(cliente.getCpf(), df.format(data_de_nascimento), "UPDATE clientes SET data_de_nascimento = ? WHERE cpf = ?");
     }
 
     private static void atualizar(String cpf, String parametro, String query) {
