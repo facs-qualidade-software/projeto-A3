@@ -32,10 +32,10 @@ jobs:
       - name: Envio de relatório do Jacoco via FTP
         shell: bash
         env:
-          FTP_HOST: ${{secrets.FTP_HOST}}
           FTP_USER: ${{secrets.FTP_USER}}
           FTP_PW: ${{secrets.FTP_PW}}
         run: |
+          FTP_HOST="joaobsjunior.com.br"
           PASTAPROJETO="facs-qualidade-software-projetoA3"
           NOMEPASTAJACOCO="relatorio_jacoco__$(date '+%F__%H-%M-%S')"
           chmod +x ${{ github.workspace }}/.github/ftp_upload_jacoco.sh
@@ -46,8 +46,8 @@ jobs:
           ${{ github.workspace }}/.github/ftp_upload_jacoco_subpasta.sh "$FTP_HOST" "$FTP_USER" "$FTP_PW" "$PASTAPROJETO" "$NOMEPASTAJACOCO" "jacoco-resources"
           cd ./../mercadinho.app/
           ${{ github.workspace }}/.github/ftp_upload_jacoco_subpasta.sh "$FTP_HOST" "$FTP_USER" "$FTP_PW" "$PASTAPROJETO" "$NOMEPASTAJACOCO" "mercadinho.app"
-      - name: URL do relatório
-        run: echo https://joaobsjunior.com.br/trabalho-a3/$PASTAPROJETO/$NOMEPASTAJACOCO/
+          echo "# Link para o Relatório do Jacoco" >> $GITHUB_STEP_SUMMARY
+          echo "https://$FTP_HOST/trabalho-a3/$PASTAPROJETO/$NOMEPASTAJACOCO/" >> $GITHUB_STEP_SUMMARY
 
   versioning:
     runs-on: ubuntu-latest
