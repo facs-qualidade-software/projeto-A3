@@ -29,7 +29,7 @@ jobs:
           echo MY_ENV_DBNAME=$MY_ENV_DBNAME >> .env
           echo MY_ENV_DBPORT=$MY_ENV_DBPORT >> .env
           mvn --batch-mode --update-snapshots verify
-      - name: Envio de relatório do Jacoco
+      - name: Envio de relatório do Jacoco via FTP
         shell: bash
         env:
           FTP_HOST: ${{secrets.FTP_HOST}}
@@ -41,13 +41,13 @@ jobs:
           chmod +x ${{ github.workspace }}/.github/ftp_upload_jacoco.sh
           cd ${{ github.workspace }}/target/site/jacoco/
           ${{ github.workspace }}/.github/ftp_upload_jacoco.sh "$FTP_HOST" "$FTP_USER" "$FTP_PW" "$PASTAPROJETO" "$NOMEPASTAJACOCO"
-          chmod +x ${{ github.workspace }}/.github/ftp_upload_jacoco_resources.sh
+          chmod +x ${{ github.workspace }}/.github/ftp_upload_jacoco_subpasta.sh
           cd ./jacoco-resources/
-          ${{ github.workspace }}/.github/ftp_upload_jacoco_resources.sh "$FTP_HOST" "$FTP_USER" "$FTP_PW" "$PASTAPROJETO" "$NOMEPASTAJACOCO"
-          chmod +x ${{ github.workspace }}/.github/ftp_upload_jacoco_app.sh
+          ${{ github.workspace }}/.github/ftp_upload_jacoco_subpasta.sh "$FTP_HOST" "$FTP_USER" "$FTP_PW" "$PASTAPROJETO" "$NOMEPASTAJACOCO" "jacoco-resources"
           cd ./../mercadinho.app/
-          ${{ github.workspace }}/.github/ftp_upload_jacoco_app.sh "$FTP_HOST" "$FTP_USER" "$FTP_PW" "$PASTAPROJETO" "$NOMEPASTAJACOCO"
-          echo https://joaobsjunior.com.br/trabalho-a3/$PASTAPROJETO/$NOMEPASTAJACOCO/
+          ${{ github.workspace }}/.github/ftp_upload_jacoco_subpasta.sh "$FTP_HOST" "$FTP_USER" "$FTP_PW" "$PASTAPROJETO" "$NOMEPASTAJACOCO" "mercadinho.app"
+      - name: URL do relatório
+        run: echo https://joaobsjunior.com.br/trabalho-a3/$PASTAPROJETO/$NOMEPASTAJACOCO/
 
   versioning:
     runs-on: ubuntu-latest
