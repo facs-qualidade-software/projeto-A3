@@ -6,7 +6,7 @@ Projeto A3 - Qualidade de Software
 
 [Link da documentação do projeto](https://github.com/facs-qualidade-software/docs)
 
-Link para o vídeo da [Apresentação final](https://youtu.be/O7IDIvj921U).
+[Link para o vídeo da Apresentação final](https://youtu.be/O7IDIvj921U).
 
 ## Banco de Dados:
 
